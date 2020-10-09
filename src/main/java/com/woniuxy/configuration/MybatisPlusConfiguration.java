@@ -15,10 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.woniuxy.reader.mapper")
 public class MybatisPlusConfiguration {
 
-    public PaginationInnerInterceptor paginationInnerInterceptor() {
-        return new PaginationInnerInterceptor();
-    }
-
     /**
      * 分页
      * @return
