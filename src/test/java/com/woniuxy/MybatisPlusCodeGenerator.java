@@ -58,7 +58,7 @@ public class MybatisPlusCodeGenerator {
         // 策略配置
         StrategyConfig sc = new StrategyConfig();
         // 全局大写命名
-        //sc.setCapitalMode(true);
+        sc.setCapitalMode(true);
         // 下划线转驼峰命名
         sc.setNaming(NamingStrategy.underline_to_camel);
         // 是否生成序列号
