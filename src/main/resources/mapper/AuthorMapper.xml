@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.reader.mapper.AuthorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.reader.entity.Author">
+        <id column="author_id" property="authorId" />
+        <result column="author_tel" property="authorTel" />
+        <result column="password" property="password" />
+        <result column="pen_name" property="penName" />
+        <result column="payment" property="payment" />
+        <result column="editor_id" property="editorId" />
+        <result column="email" property="email" />
+        <result column="sex" property="sex" />
+        <result column="author_time" property="authorTime" />
+        <result column="qq" property="qq" />
+        <result column="name" property="name" />
+        <result column="birthday" property="birthday" />
+        <result column="address" property="address" />
+        <result column="id_card" property="idCard" />
+        <result column="bank_card" property="bankCard" />
+        <result column="description" property="description" />
+        <result column="level" property="level" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 管理员: 作者、书籍联表 -->
+    <resultMap id="authorAndBookMap" type="com.woniuxy.reader.entity.Author">
+        <id column="author_id" property="authorId" />
+        <result column="author_tel" property="authorTel" />
+        <result column="password" property="password" />
+        <result column="pen_name" property="penName" />
+        <result column="payment" property="payment" />
+        <result column="editor_id" property="editorId" />
+        <result column="email" property="email" />
+        <result column="sex" property="sex" />
+        <result column="author_time" property="authorTime" />
+        <result column="qq" property="qq" />
+        <result column="name" property="name" />
+        <result column="birthday" property="birthday" />
+        <result column="address" property="address" />
+        <result column="id_card" property="idCard" />
+        <result column="bank_card" property="bankCard" />
+        <result column="description" property="description" />
+        <result column="level" property="level" />
+        <result column="status" property="status" />
+        <result column="book_num" property="bookNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        author_id, author_tel, password, pen_name, payment, editor_id, email, sex, author_time, qq, name, birthday, address, id_card, bank_card, description, level, status
+    </sql>
+
+    <select id="listAuthorByBook" resultMap="authorAndBookMap">
+        SELECT
+            a.author_id,
+            author_tel,
+            pen_name,
+            COUNT(b.book_id) book_num,
+            payment,
+            editor_id,
+            email,
+            sex,
+            author_time,
+            qq,
+            `name`,
+            birthday,
+            a.description,
+            `level`,
+            a.`status`
+        FROM
+            author a
+        LEFT JOIN
+            book b
+        ON
+            a.author_id = b.author_id
+        GROUP BY
+            a.author_id
+    </select>
+
+</mapper>
