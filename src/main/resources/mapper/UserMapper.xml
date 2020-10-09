@@ -18,9 +18,31 @@
         <result column="description" property="description" />
     </resultMap>
 
+    <!-- 管理员：用户、订阅 连表-->
+    <resultMap id="userAndSubscribeMap" type="com.woniuxy.reader.entity.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="balance" property="balance" />
+        <result column="user_tel" property="userTel" />
+        <result column="email" property="email" />
+        <result column="sex" property="sex" />
+        <result column="qq" property="qq" />
+        <result column="birthday" property="birthday" />
+        <result column="register_time" property="registerTime" />
+        <result column="last_login" property="lastLogin" />
+        <result column="description" property="description" />
+        <result column="subscribe_num" property="subscribeNum" />
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, username, password, balance, user_tel, email, sex, qq, birthday, register_time, last_login, description
     </sql>
+
+    <!-- 管理员:用户列表 -->
+    <select id="listUserAndSubscribe" resultMap="userAndSubscribeMap">
+        SELECT id ,username, balance, user_tel, email, sex, qq, birthday, COUNT(s.subscribe_id) subscribe_num, last_login, description FROM `user` u LEFT JOIN subscribe s ON s.user_id = u.id GROUP BY u.id
+    </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.woniuxy.reader.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
@@ -39,6 +40,17 @@ public class User implements Serializable {
     private Date lastLogin;
 
     private String description;
+
+    @TableField(exist = false)
+    private Integer subscribeNum;
+
+    public Integer getSubscribeNum() {
+        return subscribeNum;
+    }
+
+    public void setSubscribeNum(Integer subscribeNum) {
+        this.subscribeNum = subscribeNum;
+    }
 
     public Integer getId() {
         return id;
@@ -175,18 +187,19 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-        "id=" + id +
-        ", username=" + username +
-        ", password=" + password +
-        ", balance=" + balance +
-        ", userTel=" + userTel +
-        ", email=" + email +
-        ", sex=" + sex +
-        ", qq=" + qq +
-        ", birthday=" + birthday +
-        ", registerTime=" + registerTime +
-        ", lastLogin=" + lastLogin +
-        ", description=" + description +
-        "}";
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", balance=" + balance +
+                ", userTel='" + userTel + '\'' +
+                ", email='" + email + '\'' +
+                ", sex='" + sex + '\'' +
+                ", qq='" + qq + '\'' +
+                ", birthday=" + birthday +
+                ", registerTime=" + registerTime +
+                ", lastLogin=" + lastLogin +
+                ", description='" + description + '\'' +
+                ", subscribeNum=" + subscribeNum +
+                '}';
     }
 }
