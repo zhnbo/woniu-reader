@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找不到页面</title>
+    <link href="../css/404_style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="mainBox">
+    <img src="../img/yun0.png" alt="" class="yun yun0"/>
+    <img src="../img/yun1.png" alt="" class="yun yun1"/>
+    <img src="../img/yun2.png" alt="" class="yun yun2"/>
+    <img src="../img/bird.png" alt="" class="bird"/>
+    <img src="../img/san.png" alt="" class="san"/>
+    <div class="tipInfo">
+        <div class="in">
+            <div class="textThis">
+                <h2>你走得太远了</h2>
+                <p><span>页面自动<a id="href" href="../index.html">回到主页</a></span><span>等待<b id="wait">6</b>秒</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        let wait = document.getElementById('wait'), href = document.getElementById('href').href;
+        let interval = setInterval(function () {
+            let time = --wait.innerHTML;
+            if (time <= 0) {
+                clearInterval(interval);
+                location.href = href;
+            }
+        }, 1000);
+    })();
+</script>
+<script type="text/javascript">
+    $(function () {
+        let h = $(window).height();
+        $('body').height(h);
+        $('.mainBox').height(h);
+        centerWindow(".tipInfo");
+    });
+
+    function centerWindow(a) {
+        center(a);
+        //自适应窗口
+        $(window).bind('scroll resize',
+            function () {
+                center(a);
+            });
+    }
+
+    function center(a) {
+        let wWidth = $(window).width();
+        let wHeight = $(window).height();
+        let boxWidth = $(a).width();
+        let boxHeight = $(a).height();
+        let scrollTop = $(window).scrollTop();
+        let scrollLeft = $(window).scrollLeft();
+        let top = scrollTop + (wHeight - boxHeight) / 2;
+        let left = scrollLeft + (wWidth - boxWidth) / 2;
+        $(a).css({
+            "top": top,
+            "left": left
+        });
+    }
+</script>
+</body>
+</html>
