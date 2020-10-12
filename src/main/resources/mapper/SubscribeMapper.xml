@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.reader.mapper.SubscribeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.reader.entity.Subscribe">
+        <id column="subscribe_id" property="subscribeId" />
+        <result column="chapter_id" property="chapterId" />
+        <result column="amount" property="amount" />
+        <result column="user_id" property="userId" />
+        <result column="subscribe_time" property="subscribeTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        subscribe_id, chapter_id, amount, user_id, subscribe_time
+    </sql>
+
+</mapper>
