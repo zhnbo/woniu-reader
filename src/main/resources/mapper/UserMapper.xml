@@ -37,7 +37,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, username, password, balance, user_tel, email, sex, qq, birthday, register_time, last_login, description
+        id, username, balance, user_tel, email, sex, qq, birthday, register_time, last_login, description
     </sql>
 
     <!-- 管理员:用户列表 -->

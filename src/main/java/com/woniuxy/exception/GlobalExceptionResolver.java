@@ -9,7 +9,6 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.ValidationException;
 
 
@@ -23,60 +22,55 @@ public class GlobalExceptionResolver {
 
 	/**
 	 * 参数校验异常
-	 * @param response
 	 * @return
 	 */
 	@ExceptionHandler({BindException.class, ValidationException.class})
-	public ResponseResult<?> bindException(HttpServletResponse response, Exception e) {
+	public ResponseResult<?> bindException(Exception e) {
 		e.printStackTrace();
-		return ResponseResult.error(ResultStatusEnum.BIND_ERROR);
+		return ResponseResult.error(ResultStatusEnum.BIND_ERROR, null);
 	}
 
 	/**
 	 * 其他异常
-	 * @param response
 	 * @return
 	 */
 	@ExceptionHandler(Exception.class)
-	public ResponseResult<?> othersException(HttpServletResponse response, Exception e) {
+	public ResponseResult<?> othersException(Exception e) {
 		e.printStackTrace();
-		return ResponseResult.error();
+		return ResponseResult.error(e.getMessage());
 	}
 
 	/**
 	 * 账户不存在异常
-	 * @param response
 	 * @param e
 	 * @return
 	 */
 	@ExceptionHandler(UnknownAccountException.class)
-	public ResponseResult<?> unknownAccountException(HttpServletResponse response, Exception e) {
+	public ResponseResult<?> unknownAccountException(Exception e) {
 		e.printStackTrace();
-		return ResponseResult.error(ResultStatusEnum.UNKNOWN_ACCOUNT);
+		return ResponseResult.error(ResultStatusEnum.UNKNOWN_ACCOUNT, null);
 	}
 
 	/**
 	 * 凭证不正确异常
-	 * @param response
 	 * @param e
 	 * @return
 	 */
 	@ExceptionHandler(IncorrectCredentialsException.class)
-	public ResponseResult<?> incorrectCredentialsException(HttpServletResponse response, Exception e) {
+	public ResponseResult<?> incorrectCredentialsException(Exception e) {
 		e.printStackTrace();
-		return ResponseResult.error(ResultStatusEnum.INCORRECT_CREDENTIALS);
+		return ResponseResult.error(ResultStatusEnum.INCORRECT_CREDENTIALS, null);
 	}
 
 
 	/**
 	 * 权限不足异常
-	 * @param response
 	 * @param e
 	 * @return
 	 */
 	@ExceptionHandler(UnauthorizedException.class)
-	public ResponseResult<?> unauthorizedException(HttpServletResponse response, Exception e) {
+	public ResponseResult<?> unauthorizedException(Exception e) {
 		e.printStackTrace();
-		return ResponseResult.error(ResultStatusEnum.UNAUTHORIZED);
+		return ResponseResult.error(ResultStatusEnum.UNAUTHORIZED, null);
 	}
 }

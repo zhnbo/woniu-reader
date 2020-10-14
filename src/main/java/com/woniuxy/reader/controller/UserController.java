@@ -1,6 +1,7 @@
 package com.woniuxy.reader.controller;
 
 
+import com.woniuxy.reader.entity.User;
 import com.woniuxy.reader.service.UserService;
 import com.woniuxy.reader.vo.UserVO;
 import com.woniuxy.result.ResponseResult;
@@ -10,6 +11,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 用户控制器
@@ -51,5 +54,35 @@ public class UserController {
         return ResponseResult.success(userService.getUserById(userId));
     }
 
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    @PostMapping
+    @ApiOperation("用户注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userTel", value = "用户手机号"),
+            @ApiImplicitParam(name = "password", value = "用户密码")
+    })
+    public Object register(User user) {
+        userService.register(user);
+        return ResponseResult.success();
+    }
+
+    /**
+     * 用户登录
+     * @param user
+     */
+    @PostMapping("login")
+    @ApiOperation("用户登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userTel", value = "用户手机号"),
+            @ApiImplicitParam(name = "password", value = "用户密码")
+    })
+    public Object login(User user) {
+        Map<String, Object> resMap = userService.login(user);
+        return ResponseResult.success(resMap);
+    }
 }
 

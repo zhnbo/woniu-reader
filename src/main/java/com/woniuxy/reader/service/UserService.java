@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.woniuxy.reader.entity.User;
 import com.woniuxy.reader.vo.UserVO;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -28,5 +30,16 @@ public interface UserService {
      */
     User getUserById(Integer userId);
 
+    /**
+     * 用户注册
+     * @param user
+     */
+    void register(User user);
+
+    /**
+     * 用户登录
+     * @param user
+     */
+    Map<String, Object> login(User user);
 
 }
